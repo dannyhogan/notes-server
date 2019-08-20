@@ -55,4 +55,17 @@ describe('notes route test', () => {
       });
   });
 
+  it('can delete a note by ID', async() => {
+    return request(app)
+      .delete(`/api/v1/notes/${note._id}`)
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          title: note.title,
+          note: note.note,
+          __v: 0
+        });
+      });
+  });
+
 });
